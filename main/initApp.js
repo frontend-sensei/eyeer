@@ -14,19 +14,19 @@ async function initApp() {
   };
 
   ipcMain.on('break-end', () => {
-    handleBreakEnd(breakEndData)
+    handleBreakEnd()
     setupBreak()
   })
   ipcMain.on('custom-lock-screen', (_event, timeLost) => {
     breakEndData.timeLost = timeLost
     breakEndData.timestamp = Date.now()
     lockScreen()
-    handleBreakEnd(breakEndData)
+    handleBreakEnd()
   })
   ipcMain.on('custom-unlock-screen', () => {
     store.screenLocked = false
     store.windows.trap?.close()
-    handleBreakEnd(breakEndData)
+    handleBreakEnd()
     if (isTimeLost()) {
       launchBreak()
       return
@@ -38,12 +38,11 @@ async function initApp() {
   setupBreak()
 
   /**
-   * Close opened window, reset started timeout, setup timeout for new break
-   * @param breakData
+   * Close opened window, reset started timeout, hide opened window.
    * @returns {Promise<void>}
    */
-  async function handleBreakEnd(breakData) {
-    const {timeoutID, window} = breakData
+  async function handleBreakEnd() {
+    const {timeoutID, window} = breakEndData
 
     clearTimeout(timeoutID)
     // need to hide window to not exit from app.
