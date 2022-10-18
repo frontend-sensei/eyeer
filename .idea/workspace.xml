@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="43b7a675-0c56-482c-8fd9-48178ff08946" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.editorconfig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/eye.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/e/1e44b4708326e97390cb591bcc719fa1f0e18e6f" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/3/e/3e91db96c4068ef24fda0163fe34511c7e605ee3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/3/433a8ee55125d0354145c5c12875a99273798210" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/3/43c245f4b01f02a899080705d34dec7f5ef9b351" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/a/4a8486805915245bbbe2e3c8c1a9d680c6843a82" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/f/5f50b9ce8d13463f693d4a64743ca22e095511c3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/2/626a747c8694eaae66f2afb3d1a745b045782c70" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/0/7030d0b2f71b999ff89a343de08c414af32fc93a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/0/901e49a8dc45be9275df81960e74736557662bf3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/4/c4a4248f7568c9e41265502c39b0daeb8b635431" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/e/de319cff811454eb408ca2fb2863f40badea970a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/break/createBreakWindow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/break/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/break/preload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/break/renderer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/chanelNames.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/initApp.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/lockscreen/events.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/lockscreen/initScreenPowerMonitoring.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/lockscreen/lockscreen.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/lockscreen/trapWindow/createTrapWindow.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/lockscreen/trapWindow/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/lockscreen/trapWindow/preload.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/lockscreen/trapWindow/renderer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/store/store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/utils/isLinux.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/preload.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/renderer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles.css" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/node_modules/@types/node/ts4.8/child_process.d.ts" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2FH7BeC0WaUGGdQAukzGPWx535n" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "javascript.nodejs.core.library.configured.version": "14.20.0",
+    "javascript.nodejs.core.library.typings.version": "14.18.32",
+    "last_opened_file_path": "/home/sensei/WORK/eye",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "prettierjs.PrettierConfiguration.Package": "/home/sensei",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
+    "ts.external.directory.path": "/snap/webstorm/281/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/main/lockscreen/trapWindow" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/main/break" />
+      <recent name="$PROJECT_DIR$/main/store" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+        <item itemvalue="npm.build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="43b7a675-0c56-482c-8fd9-48178ff08946" name="Changes" comment="" />
+      <created>1664137022214</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1664137022214</updated>
+      <workItem from="1664137023742" duration="6450000" />
+      <workItem from="1664182269467" duration="14000" />
+      <workItem from="1665419363432" duration="8059000" />
+      <workItem from="1665474095643" duration="4529000" />
+      <workItem from="1665515627807" duration="2115000" />
+      <workItem from="1665517772351" duration="102000" />
+      <workItem from="1665517880660" duration="1060000" />
+      <workItem from="1665519064694" duration="704000" />
+      <workItem from="1665564086814" duration="10000" />
+      <workItem from="1665599086377" duration="5948000" />
+      <workItem from="1665654201329" duration="15000" />
+      <workItem from="1665688037768" duration="7938000" />
+      <workItem from="1665734721586" duration="4119000" />
+      <workItem from="1665742476742" duration="1149000" />
+      <workItem from="1665746208687" duration="1204000" />
+      <workItem from="1665748839992" duration="885000" />
+      <workItem from="1665753149001" duration="4641000" />
+      <workItem from="1665757880577" duration="3050000" />
+      <workItem from="1665763109949" duration="9632000" />
+      <workItem from="1665826460358" duration="5762000" />
+      <workItem from="1666081491633" duration="4503000" />
+      <workItem from="1666098910150" duration="944000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
