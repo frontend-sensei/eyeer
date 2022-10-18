@@ -23,7 +23,7 @@ function lockScreen() {
     if (err) {
       console.log('Unable to lock the screen:', err);
     }
-    if (!err && isLinux) {
+    if (!err) {
       setTimeout(() => {
         createTrapWindow()
       }, 1000)

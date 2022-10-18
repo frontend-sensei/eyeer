@@ -1,9 +1,13 @@
-window.api.receive("get-break-data", (data) => {
-  initRenderer(data)
+window.api.receive("get-break-data", (breakData) => {
+  initRenderer(breakData)
 });
 
-function initRenderer(store) {
-  initTimer(store)
+const startedBreakData = {
+  timeLost: 0
+}
+
+function initRenderer(breakData) {
+  initTimer(breakData)
   initSkipButton()
   initLockButton()
 }
@@ -13,7 +17,9 @@ function initLockButton() {
   if (!lockButton) {
     console.error('lockButton not found!')
   }
-  lockButton.addEventListener('click', window.api.lockScreen)
+  lockButton.addEventListener('click', () => {
+    window.api.lockScreen(startedBreakData.timeLost)
+  })
 }
 
 function initSkipButton() {
@@ -29,7 +35,9 @@ function initTimer(store) {
   if (!timerNode) {
     console.error('timerNode not found!')
   }
-  let duration = 5000 || +store.break.duration
+  let duration = +store.duration
+  startedBreakData.timeLost = duration
+
   updateTimer()
   let timerID = setInterval(() => {
     if (duration === 0) {
@@ -42,6 +50,7 @@ function initTimer(store) {
 
   function updateTimer() {
     timerNode.innerText = getTimerValue(duration)
+    startedBreakData.timeLost = duration
   }
 }
 

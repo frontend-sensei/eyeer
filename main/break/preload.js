@@ -14,6 +14,6 @@ contextBridge.exposeInMainWorld(
       }
     },
     breakEnd: () => ipcRenderer.send('break-end'),
-    lockScreen: () => ipcRenderer.send('lock-screen')
+    lockScreen: (timeLost) => ipcRenderer.send('custom-lock-screen', timeLost)
   }
 );
