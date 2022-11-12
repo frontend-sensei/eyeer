@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
+  "name": "braker",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "An app that helps you take breaks. Also suggests how best to spend a break",
   "main": "main.js",
   "scripts": {
     "start": "electron --enable-transparent-visuals ."
