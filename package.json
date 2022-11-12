@@ -4,7 +4,9 @@
   "description": "An app that helps you take breaks. Also suggests how best to spend a break",
   "main": "main.js",
   "scripts": {
-    "start": "electron --enable-transparent-visuals ."
+    "start": "electron --enable-transparent-visuals .",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -17,6 +19,39 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.1",
+    "@electron-forge/maker-deb": "^6.0.1",
+    "@electron-forge/maker-squirrel": "^6.0.1",
+    "@electron-forge/maker-zip": "^6.0.1",
+    "@electron-forge/maker-rpm": "^6.0.1",
     "electron": "^21.1.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {},
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron_quick_start"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin",
+            "linux"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }
