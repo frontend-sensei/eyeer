@@ -1,6 +1,8 @@
 const store = require("./store/store");
-const {app,ipcMain} = require("electron");
+const path = require('path')
+const { app, ipcMain, Menu, Tray } = require("electron");
 const createBreakWindow = require("./break/createBreakWindow");
+const createSettingsWindow = require("./settings/createSettingsWindow");
 const lockScreen = require('./lockscreen/lockscreen');
 
 async function initApp() {
@@ -8,6 +10,30 @@ async function initApp() {
     app.commandLine.appendSwitch('enable-transparent-visuals');
     app.commandLine.appendSwitch('disable-gpu');
   }
+
+  app.whenReady().then(() => {
+    const tray = new Tray(path.resolve(__dirname, 'assets/braker-icon.png'))
+    const contextMenu = Menu.buildFromTemplate([
+      {
+        label: 'Settings',
+        type: 'normal',
+        click: () => {
+          createSettingsWindow()
+        }
+      },
+      { type: 'separator' },
+      {
+        label: 'Quit Braker',
+        type: 'normal',
+        click: () => {
+          app.exit(0)
+        }
+      }
+    ])
+    tray.setToolTip('This is my application.')
+    tray.setContextMenu(contextMenu)
+  })
+
   const breakInterval = store.break.interval * 1000
   const breakEndData = {
     timeoutID: null,
@@ -81,6 +107,8 @@ async function initApp() {
     return seconds - breakEndData.timeLost
   }
 }
+
+
 
 module.exports = initApp
 
