@@ -1,9 +1,13 @@
 const store = require("./store/store");
-const {ipcMain} = require("electron");
+const {app,ipcMain} = require("electron");
 const createBreakWindow = require("./break/createBreakWindow");
 const lockScreen = require('./lockscreen/lockscreen');
 
 async function initApp() {
+  if (process.platform === 'linux') {
+    app.commandLine.appendSwitch('enable-transparent-visuals');
+    app.commandLine.appendSwitch('disable-gpu');
+  }
   const breakInterval = store.break.interval * 1000
   const breakEndData = {
     timeoutID: null,

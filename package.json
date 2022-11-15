@@ -4,7 +4,8 @@
   "description": "An app that helps you take breaks. Also suggests how best to spend a break",
   "main": "main.js",
   "scripts": {
-    "start": "electron --enable-transparent-visuals .",
+    "start": "electron .",
+    "start-forge": "electron-forge start --enable-logging --inspect-electron",
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
