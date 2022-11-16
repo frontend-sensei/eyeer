@@ -1,5 +1,5 @@
 const store = require("./store/store");
-const { app, ipcMain } = require("electron");
+const { app, ipcMain, screen, BrowserWindow } = require("electron");
 const createBreakWindow = require("./break/createBreakWindow");
 const lockScreen = require("./lockscreen/lockscreen");
 const setupTray = require("./app-setup/tray/tray");
@@ -12,7 +12,7 @@ async function initApp() {
   const breakInterval = store.data.break.interval * 1000;
   const breakEndData = {
     timeoutID: null,
-    window: null,
+    windows: [],
     cancelPromise: null,
     timeLost: 0,
     timestamp: 0,
@@ -49,12 +49,13 @@ async function initApp() {
    * @returns {Promise<void>}
    */
   async function handleBreakEnd() {
-    const { timeoutID, window } = breakEndData;
+    const { timeoutID, windows } = breakEndData;
     clearTimeout(timeoutID);
     store.setNextMessage();
     // need to hide window to not exit from app.
     // after creation a new window, we can close previous
-    window?.hide();
+    windows[0]?.hide();
+    windows[1]?.hide();
   }
 
   function setupBreak() {
@@ -72,11 +73,31 @@ async function initApp() {
       : store.data.break;
     breakEndData.timeLost = 0;
 
+    const displays = screen.getAllDisplays();
+    const externalDisplay = displays.find((display) => {
+      return display.bounds.x !== 0 || display.bounds.y !== 0;
+    });
+
     const newWindow = createBreakWindow();
-    breakEndData.window?.close();
-    breakEndData.window = newWindow;
-    breakEndData.window.webContents.on("did-finish-load", () => {
-      breakEndData.window.webContents.send("get-break-data", newBreakData);
+    if (externalDisplay) {
+      const newExternalWindow = createBreakWindow({
+        x: externalDisplay.bounds.x,
+        y: externalDisplay.bounds.y,
+      });
+      breakEndData.windows[1]?.close();
+      breakEndData.windows[1] = newExternalWindow;
+      breakEndData.windows[1].webContents.on("did-finish-load", () => {
+        breakEndData.windows[1].webContents.send(
+          "get-break-data",
+          newBreakData
+        );
+      });
+    }
+
+    breakEndData.windows[0]?.close();
+    breakEndData.windows[0] = newWindow;
+    breakEndData.windows[0].webContents.on("did-finish-load", () => {
+      breakEndData.windows[0].webContents.send("get-break-data", newBreakData);
     });
   }
 
