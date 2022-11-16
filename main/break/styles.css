@@ -19,8 +19,8 @@ html {
 }
 
 .break__button {
-  padding: .5rem 1.5rem;
-  margin: 0 .5rem;
+  padding: 0.5rem 1.5rem;
+  margin: 0 0.5rem;
   cursor: pointer;
   color: #bbbbbb;
   box-shadow: 3px 3px 16px -5px #000000, -3px -3px 16px -5px #3a3a3a;
