@@ -1,9 +1,8 @@
 const store = require("./store/store");
-const path = require("path");
-const { app, ipcMain, Menu, Tray } = require("electron");
+const { app, ipcMain } = require("electron");
 const createBreakWindow = require("./break/createBreakWindow");
-const createSettingsWindow = require("./settings/createSettingsWindow");
 const lockScreen = require("./lockscreen/lockscreen");
+const setupTray = require("./app-setup/tray/tray");
 
 async function initApp() {
   if (process.platform === "linux") {
@@ -11,28 +10,7 @@ async function initApp() {
     app.commandLine.appendSwitch("disable-gpu");
   }
 
-  app.whenReady().then(() => {
-    const tray = new Tray(path.resolve(__dirname, "assets/braker-icon.png"));
-    const contextMenu = Menu.buildFromTemplate([
-      {
-        label: "Settings",
-        type: "normal",
-        click: () => {
-          createSettingsWindow();
-        },
-      },
-      { type: "separator" },
-      {
-        label: "Quit Braker",
-        type: "normal",
-        click: () => {
-          app.exit(0);
-        },
-      },
-    ]);
-    tray.setToolTip("This is my application.");
-    tray.setContextMenu(contextMenu);
-  });
+  setupTray();
 
   const breakInterval = store.break.interval * 1000;
   const breakEndData = {
