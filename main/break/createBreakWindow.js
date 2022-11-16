@@ -16,7 +16,6 @@ function createBreakWindow(windowOptions) {
   });
   mainWindow.setMenuBarVisibility(false);
   mainWindow.loadFile(path.join(__dirname, "index.html"));
-  // mainWindow.webContents.openDevTools();
 
   return mainWindow;
 }

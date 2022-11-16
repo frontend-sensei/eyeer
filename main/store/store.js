@@ -66,7 +66,7 @@ module.exports = new Store({
   defaults: {
     break: {
       interval: 2, // 25 mins
-      duration: 5, // 5 mins
+      duration: 500, // 5 mins
       longDuration: 60 * 30, // 30 mins
       currentMessageId: 0,
       messages: new Set([
