@@ -1,0 +1,59 @@
+html {
+  height: 100%;
+  background: linear-gradient(145deg, #202020, #141414);
+  font-family: sans-serif;
+  color: #bbbbbb;
+}
+
+.input {
+  padding: 0.25rem;
+  background: linear-gradient(145deg, #919191, #404040);
+}
+.button {
+  padding: 0.35rem 1.5rem;
+  cursor: pointer;
+  color: #bbbbbb;
+  box-shadow: 3px 3px 16px -5px #000000, -3px -3px 16px -5px #404040;
+  background: linear-gradient(145deg, #343434, #161616);
+  border: none;
+}
+.button:hover {
+  background: linear-gradient(145deg, #5e5e5e, #222222);
+}
+
+input:focus-visible, button:focus-visible {
+  outline-color: black;
+}
+
+.wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.page-title {
+  text-align: center;
+}
+
+.add-message-box {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.add-message-input {
+  margin: 0.5rem 0;
+}
+
+.message-box {
+  margin-bottom: .5rem;
+  display: flex;
+}
+
+.message-field {
+  width: 100%;
+  margin-right: 0.25rem;
+}
+
+.save-button {
+  width: 100%;
+}

@@ -28,7 +28,7 @@ function initMessages(data) {
 function initSaveButton() {
   const messagesNode = document.getElementById("messages");
   const saveButton = document.createElement("button");
-  saveButton.className = "save-button";
+  saveButton.className = "button save-button";
   saveButton.innerText = "Save";
   const saveButtonNode = messagesNode.appendChild(saveButton);
   saveButtonNode.addEventListener("click", saveButtonHandler);
@@ -78,7 +78,7 @@ function handleDeleteMessage(event) {
 
 function getMessageBoxInnerHTML(message) {
   return `
-  <input type="text" class="message-field" value="${message}" />
-  <button class="message-delete">X</button>
+  <input type="text" class="input message-field" value="${message}" />
+  <button class="button message-delete">X</button>
   `;
 }

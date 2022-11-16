@@ -2,23 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Settings</title>
-    <style>
-      .form-row {
-        display: flex;
-        flex-direction: column;
-      }
-    </style>
+    <title>Braker | Settings</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Settings</h1>
-    <h2>Messages</h2>
-    <div class="form-row">
-      <label for="addMessageInput">Add message</label>
-      <input type="text" id="addMessageInput" />
-      <button class="add-message-button" id="addMessageButton">Save</button>
-    </div>
-    <div class="messages" id="messages"></div>
+    <main class="wrapper">
+      <h1 class="page-title">Settings</h1>
+      <h2>Messages</h2>
+      <div class="add-message-box">
+        <label for="addMessageInput">Add message</label>
+        <input
+          type="text"
+          id="addMessageInput"
+          class="input add-message-input"
+        />
+        <button class="button" id="addMessageButton">Add message</button>
+      </div>
+      <div class="messages" id="messages"></div>
+    </main>
     <script src="renderer.js"></script>
   </body>
 </html>

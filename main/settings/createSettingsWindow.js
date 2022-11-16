@@ -16,7 +16,6 @@ function createSettingsWindow() {
   mainWindow.webContents.on("did-finish-load", () => {
     mainWindow.webContents.send("get-settings-data", store.data.break);
   });
-  mainWindow.webContents.openDevTools();
 
   ipcMain.on("update-messages", (_event, messages) => {
     store.data.break.messages = messages;
