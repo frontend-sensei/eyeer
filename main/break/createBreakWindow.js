@@ -1,7 +1,5 @@
-const {
-  BrowserWindow,
-} = require('electron');
-const path = require('path');
+const { BrowserWindow } = require("electron");
+const path = require("path");
 
 function createBreakWindow() {
   const mainWindow = new BrowserWindow({
@@ -12,21 +10,22 @@ function createBreakWindow() {
     webPreferences: {
       contextIsolation: true, // protect against prototype pollution
       enableRemoteModule: false, // turn off remote
-      preload: path.join(__dirname, 'preload.js')
-    }
+      preload: path.join(__dirname, "preload.js"),
+    },
   });
-  mainWindow.setMenuBarVisibility(false)
+  mainWindow.setMenuBarVisibility(false);
 
   var today = new Date();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  console.log('window created', time)
+  var time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  console.log("window created", time);
 
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  mainWindow.loadFile(path.join(__dirname, "index.html"));
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
 
-  return mainWindow
+  return mainWindow;
 }
 
-module.exports = createBreakWindow
+module.exports = createBreakWindow;

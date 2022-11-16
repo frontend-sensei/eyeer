@@ -1,5 +1,5 @@
 function isLinux() {
-  return process.platform === 'linux'
+  return process.platform === "linux";
 }
 
-module.exports = isLinux()
+module.exports = isLinux();

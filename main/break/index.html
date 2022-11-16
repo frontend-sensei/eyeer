@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
-  <link href="../../styles.css" rel="stylesheet">
-  <title>Hello World!</title>
-</head>
-<body>
-<main class="break">
-  <h1 id="message" class="break__message">Break message</h1>
-  <div id="timer" class="break__timer">00:00</div>
-  <button id="skipButton" class="break__button">
-    Skip
-  </button>
-  <button id="lockButton" class="break__lock-btn">
-    Lock
-  </button>
-</main>
-<!-- You can also require other files to run in this process -->
-<script src="renderer.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    />
+    <link href="../../styles.css" rel="stylesheet" />
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <main class="break">
+      <h1 id="message" class="break__message">Break message</h1>
+      <div id="timer" class="break__timer">00:00</div>
+      <button id="skipButton" class="break__button">Skip</button>
+      <button id="lockButton" class="break__lock-btn">Lock</button>
+    </main>
+    <!-- You can also require other files to run in this process -->
+    <script src="renderer.js"></script>
+  </body>
 </html>

@@ -1,6 +1,6 @@
-const {BrowserWindow} = require("electron");
+const { BrowserWindow } = require("electron");
 const path = require("path");
-const store = require('../../store/store')
+const store = require("../../store/store");
 
 async function createTrapWindow() {
   const trapWindow = new BrowserWindow({
@@ -10,14 +10,14 @@ async function createTrapWindow() {
     webPreferences: {
       contextIsolation: true,
       enableRemoteModule: false,
-      preload: path.join(__dirname, 'preload.js')
-    }
+      preload: path.join(__dirname, "preload.js"),
+    },
   });
 
-  await trapWindow.loadFile(path.join(__dirname, 'index.html'));
+  await trapWindow.loadFile(path.join(__dirname, "index.html"));
   // trapWindow.webContents.openDevTools();
 
-  store.windows.trap = trapWindow
+  store.windows.trap = trapWindow;
 }
 
-module.exports = createTrapWindow
+module.exports = createTrapWindow;

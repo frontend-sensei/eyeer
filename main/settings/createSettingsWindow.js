@@ -1,7 +1,5 @@
-const {
-  BrowserWindow,
-} = require('electron');
-const path = require('path');
+const { BrowserWindow } = require("electron");
+const path = require("path");
 
 function createSettingsWindow() {
   const mainWindow = new BrowserWindow({
@@ -9,16 +7,16 @@ function createSettingsWindow() {
     webPreferences: {
       contextIsolation: true, // protect against prototype pollution
       enableRemoteModule: false, // turn off remote
-      preload: path.join(__dirname, 'preload.js')
-    }
+      preload: path.join(__dirname, "preload.js"),
+    },
   });
-  mainWindow.setMenu(null)
-  mainWindow.loadFile(path.join(__dirname, 'index.html'));
+  mainWindow.setMenu(null);
+  mainWindow.loadFile(path.join(__dirname, "index.html"));
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();
 
-  return mainWindow
+  return mainWindow;
 }
 
-module.exports = createSettingsWindow
+module.exports = createSettingsWindow;

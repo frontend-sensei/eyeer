@@ -1,6 +1,6 @@
 const CHANEL_NAMES = {
-  RENDERER: 'RENDERER',
-  MAIN: 'MAIN'
-}
+  RENDERER: "RENDERER",
+  MAIN: "MAIN",
+};
 
-module.exports = CHANEL_NAMES
+module.exports = CHANEL_NAMES;

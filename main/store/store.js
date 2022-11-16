@@ -1,6 +1,6 @@
-const electron = require('electron');
-const path = require('path');
-const fs = require('fs');
+const electron = require("electron");
+const path = require("path");
+const fs = require("fs");
 
 function parseDataFile(filePath, defaults) {
   try {
@@ -12,10 +12,12 @@ function parseDataFile(filePath, defaults) {
 
 class Store {
   constructor(opts) {
-    const userDataPath = (electron.app || electron.remote.app).getPath('userData');
+    const userDataPath = (electron.app || electron.remote.app).getPath(
+      "userData"
+    );
     this.path = path.join(userDataPath, `${opts.configName}.json`);
     this.data = parseDataFile(this.path, opts.defaults);
-    return this.data
+    return this.data;
   }
 
   set(key, val) {
@@ -30,7 +32,7 @@ class Store {
 }
 
 module.exports = new Store({
-  configName: 'user-preferences',
+  configName: "user-preferences",
   defaults: {
     break: {
       interval: 50000, // 25 mins
@@ -38,15 +40,15 @@ module.exports = new Store({
       longDuration: 60 * 30, // 30 mins
       currentMessageId: 0,
       messages: new Set([
-        'Tightly close your eyes',
-        'Take a walk',
-        'Drop your eyes',
-        'Get out into the fresh air',
-        'Do exercises for the eyes',
-      ])
+        "Tightly close your eyes",
+        "Take a walk",
+        "Drop your eyes",
+        "Get out into the fresh air",
+        "Do exercises for the eyes",
+      ]),
     },
     windows: {
-      trap: null
+      trap: null,
     },
     screenLocked: false,
   },

@@ -9,7 +9,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "prepare": "husky install",
-    "prettify": "prettier --write"
+    "prettify": "prettier --write ."
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
