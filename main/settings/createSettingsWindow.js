@@ -1,20 +1,28 @@
-const { BrowserWindow } = require("electron");
+const { BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
+const store = require("../store/store");
 
 function createSettingsWindow() {
   const mainWindow = new BrowserWindow({
     center: true,
     webPreferences: {
-      contextIsolation: true, // protect against prototype pollution
-      enableRemoteModule: false, // turn off remote
+      contextIsolation: true,
+      enableRemoteModule: false,
       preload: path.join(__dirname, "preload.js"),
     },
   });
   mainWindow.setMenu(null);
   mainWindow.loadFile(path.join(__dirname, "index.html"));
+  mainWindow.webContents.on("did-finish-load", () => {
+    mainWindow.webContents.send("get-settings-data", store.break);
+  });
+
+  ipcMain.on("update-messages", (_event, messages) => {
+    store.break.messages = messages;
+  });
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
 
   return mainWindow;
 }

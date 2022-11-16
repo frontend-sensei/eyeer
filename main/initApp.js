@@ -1,5 +1,5 @@
 const store = require("./store/store");
-const { ipcMain } = require("electron");
+const { app, ipcMain } = require("electron");
 const createBreakWindow = require("./break/createBreakWindow");
 const lockScreen = require("./lockscreen/lockscreen");
 const setupTray = require("./app-setup/tray/tray");
@@ -17,6 +17,8 @@ async function initApp() {
     timeLost: 0,
     timestamp: 0,
   };
+
+  app.on("window-all-closed", (e) => e.preventDefault());
 
   ipcMain.on("break-end", () => {
     handleBreakEnd();

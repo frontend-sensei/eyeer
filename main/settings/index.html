@@ -14,19 +14,11 @@
     <h1>Settings</h1>
     <h2>Messages</h2>
     <div class="form-row">
-      <label for="addMessage">Add message</label>
-      <input type="text" id="addMessage" />
+      <label for="addMessageInput">Add message</label>
+      <input type="text" id="addMessageInput" />
+      <button class="add-message-button" id="addMessageButton">Save</button>
     </div>
-    <div class="messages">
-      <div class="message-box">
-        <input type="text" class="message-field" />
-        <button class="message-delete">X</button>
-      </div>
-      <div class="message-box">
-        <input type="text" class="message-field" />
-        <button class="message-delete">X</button>
-      </div>
-      <button>Save</button>
-    </div>
+    <div class="messages" id="messages"></div>
+    <script src="renderer.js"></script>
   </body>
 </html>
