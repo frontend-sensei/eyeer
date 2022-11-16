@@ -1,15 +1,12 @@
 const store = require("./store/store");
-const { app, ipcMain } = require("electron");
+const { ipcMain } = require("electron");
 const createBreakWindow = require("./break/createBreakWindow");
 const lockScreen = require("./lockscreen/lockscreen");
 const setupTray = require("./app-setup/tray/tray");
+const setupFlags = require("./app-setup/flags/flags");
 
 async function initApp() {
-  if (process.platform === "linux") {
-    app.commandLine.appendSwitch("enable-transparent-visuals");
-    app.commandLine.appendSwitch("disable-gpu");
-  }
-
+  setupFlags();
   setupTray();
 
   const breakInterval = store.break.interval * 1000;
