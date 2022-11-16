@@ -3,6 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 function parseDataFile(filePath, defaults) {
+  return defaults;
   try {
     return JSON.parse(fs.readFileSync(filePath));
   } catch (error) {
@@ -18,6 +19,15 @@ class Store {
     this.path = path.join(userDataPath, `${opts.configName}.json`);
     this.data = parseDataFile(this.path, opts.defaults);
     this.formatData();
+  }
+
+  setNextMessage() {
+    const { size } = this.data.break.messages;
+    if (this.data.break.currentMessageId === size - 1) {
+      this.data.break.currentMessageId = 0;
+      return;
+    }
+    this.data.break.currentMessageId += 1;
   }
 
   formatData() {
@@ -55,7 +65,7 @@ module.exports = new Store({
   configName: "user-preferences",
   defaults: {
     break: {
-      interval: 50000, // 25 mins
+      interval: 5, // 25 mins
       duration: 5, // 5 mins
       longDuration: 60 * 30, // 30 mins
       currentMessageId: 0,

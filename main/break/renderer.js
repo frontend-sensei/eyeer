@@ -1,15 +1,14 @@
-window.api.receive("get-break-data", (breakData) => {
-  initRenderer(breakData);
-});
+window.api.receive("get-break-data", (data) => initRenderer(data));
 
 const startedBreakData = {
   timeLost: 0,
 };
 
-function initRenderer(breakData) {
-  initTimer(breakData);
+function initRenderer(data) {
+  initTimer(data);
   initSkipButton();
   initLockButton();
+  initMessage(data);
 }
 
 function initLockButton() {
@@ -30,12 +29,12 @@ function initSkipButton() {
   skipButton.addEventListener("click", window.api.breakEnd);
 }
 
-function initTimer(store) {
+function initTimer(data) {
   const timerNode = document.getElementById("timer");
   if (!timerNode) {
     console.error("timerNode not found!");
   }
-  let duration = +store.data.duration;
+  let duration = +data.duration;
   startedBreakData.timeLost = duration;
 
   updateTimer();
@@ -52,6 +51,13 @@ function initTimer(store) {
     timerNode.innerText = getTimerValue(duration);
     startedBreakData.timeLost = duration;
   }
+}
+
+function initMessage(data) {
+  const { messages, currentMessageId } = data;
+  const message = Array.from(messages)[currentMessageId] || "No break message";
+  const messageNode = document.getElementById("message");
+  messageNode.innerText = message;
 }
 
 function getTimerValue(duration) {

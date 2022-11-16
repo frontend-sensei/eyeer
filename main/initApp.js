@@ -50,8 +50,8 @@ async function initApp() {
    */
   async function handleBreakEnd() {
     const { timeoutID, window } = breakEndData;
-
     clearTimeout(timeoutID);
+    store.setNextMessage();
     // need to hide window to not exit from app.
     // after creation a new window, we can close previous
     window?.hide();
