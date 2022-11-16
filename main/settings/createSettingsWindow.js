@@ -11,19 +11,17 @@ function createSettingsWindow() {
       preload: path.join(__dirname, "preload.js"),
     },
   });
-  mainWindow.setMenu(null);
+  mainWindow.setMenuBarVisibility(false);
   mainWindow.loadFile(path.join(__dirname, "index.html"));
   mainWindow.webContents.on("did-finish-load", () => {
     mainWindow.webContents.send("get-settings-data", store.data.break);
   });
+  mainWindow.webContents.openDevTools();
 
   ipcMain.on("update-messages", (_event, messages) => {
     store.data.break.messages = messages;
     store.save();
   });
-
-  // Open the DevTools.
-  mainWindow.webContents.openDevTools();
 
   return mainWindow;
 }

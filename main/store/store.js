@@ -65,7 +65,7 @@ module.exports = new Store({
   configName: "user-preferences",
   defaults: {
     break: {
-      interval: 5, // 25 mins
+      interval: 2, // 25 mins
       duration: 5, // 5 mins
       longDuration: 60 * 30, // 30 mins
       currentMessageId: 0,
