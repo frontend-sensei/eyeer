@@ -35,7 +35,7 @@ function initTimer(store) {
   if (!timerNode) {
     console.error("timerNode not found!");
   }
-  let duration = +store.duration;
+  let duration = +store.data.duration;
   startedBreakData.timeLost = duration;
 
   updateTimer();

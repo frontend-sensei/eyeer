@@ -9,7 +9,7 @@ async function initApp() {
   setupFlags();
   setupTray();
 
-  const breakInterval = store.break.interval * 1000;
+  const breakInterval = store.data.break.interval * 1000;
   const breakEndData = {
     timeoutID: null,
     window: null,
@@ -31,8 +31,8 @@ async function initApp() {
     handleBreakEnd();
   });
   ipcMain.on("custom-unlock-screen", () => {
-    store.screenLocked = false;
-    store.windows.trap?.close();
+    store.data.screenLocked = false;
+    store.data.windows.trap?.close();
     handleBreakEnd();
     if (isTimeLost()) {
       launchBreak();
@@ -58,8 +58,8 @@ async function initApp() {
   }
 
   function setupBreak() {
-    if (store.screenLocked) {
-      console.log("cancelled break setup", store.screenLocked);
+    if (store.data.screenLocked) {
+      console.log("cancelled break setup", store.data.screenLocked);
       return;
     }
 
@@ -68,8 +68,8 @@ async function initApp() {
 
   function launchBreak() {
     const newBreakData = breakEndData.timeLost
-      ? { ...store.break, duration: breakEndData.timeLost }
-      : store.break;
+      ? { ...store.data.break, duration: breakEndData.timeLost }
+      : store.data.break;
     breakEndData.timeLost = 0;
 
     const newWindow = createBreakWindow();

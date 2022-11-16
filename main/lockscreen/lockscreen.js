@@ -24,7 +24,7 @@ function lockscreen(cb, customCommands) {
 
 function lockScreen() {
   lockscreen((err, stdout) => {
-    store.screenLocked = true;
+    store.data.screenLocked = true;
     if (err) {
       console.log("Unable to lock the screen:", err);
     }

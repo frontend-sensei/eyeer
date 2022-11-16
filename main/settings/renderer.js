@@ -1,6 +1,4 @@
-window.api.receive("get-settings-data", (data) => {
-  initRenderer(data);
-});
+window.api.receive("get-settings-data", (data) => initRenderer(data));
 
 const settings = {};
 function initRenderer(data) {

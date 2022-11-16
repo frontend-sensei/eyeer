@@ -14,11 +14,12 @@ function createSettingsWindow() {
   mainWindow.setMenu(null);
   mainWindow.loadFile(path.join(__dirname, "index.html"));
   mainWindow.webContents.on("did-finish-load", () => {
-    mainWindow.webContents.send("get-settings-data", store.break);
+    mainWindow.webContents.send("get-settings-data", store.data.break);
   });
 
   ipcMain.on("update-messages", (_event, messages) => {
-    store.break.messages = messages;
+    store.data.break.messages = messages;
+    store.save();
   });
 
   // Open the DevTools.

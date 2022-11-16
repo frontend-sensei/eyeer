@@ -17,7 +17,7 @@ async function createTrapWindow() {
   await trapWindow.loadFile(path.join(__dirname, "index.html"));
   // trapWindow.webContents.openDevTools();
 
-  store.windows.trap = trapWindow;
+  store.data.windows.trap = trapWindow;
 }
 
 module.exports = createTrapWindow;

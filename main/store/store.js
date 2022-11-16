@@ -17,17 +17,37 @@ class Store {
     );
     this.path = path.join(userDataPath, `${opts.configName}.json`);
     this.data = parseDataFile(this.path, opts.defaults);
-    return this.data;
+    this.formatData();
   }
 
-  set(key, val) {
-    this.data[key] = val;
-    fs.writeFileSync(this.path, JSON.stringify(this.data));
+  formatData() {
+    if (!(this.data.break.messages instanceof Set)) {
+      this.data.break.messages = this.objectToSet(this.data.break.messages);
+    }
   }
 
-  remove(key) {
-    delete this.data[key];
+  save() {
+    this.data.break.messages = this.setToObject(this.data.break.messages);
     fs.writeFileSync(this.path, JSON.stringify(this.data));
+    this.data.break.messages = this.objectToSet(this.data.break.messages);
+  }
+
+  setToObject(set = new Set()) {
+    const object = {};
+    let index = 0;
+    set.forEach((element) => {
+      object[index] = element;
+      index++;
+    });
+    return object;
+  }
+
+  objectToSet(object) {
+    const set = new Set();
+    for (const property in object) {
+      set.add(object[property]);
+    }
+    return set;
   }
 }
 
