@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
-const validChannels = ["main", "get-break-data"];
+const validChannels = ["main", "get-break-data", "screen-locking"];
 contextBridge.exposeInMainWorld("api", {
   send: (channel, data) => {
     if (validChannels.includes(channel)) {
@@ -14,4 +14,5 @@ contextBridge.exposeInMainWorld("api", {
   },
   breakEnd: () => ipcRenderer.send("break-end"),
   lockScreen: (timeLost) => ipcRenderer.send("custom-lock-screen", timeLost),
+  sendTimeLost: (timeLost) => ipcRenderer.send("screen-locking", timeLost),
 });

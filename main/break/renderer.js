@@ -4,6 +4,10 @@ const startedBreakData = {
   timeLost: 0,
 };
 
+window.api.receive("screen-locking", () =>
+  window.api.sendTimeLost(startedBreakData.timeLost)
+);
+
 function initRenderer(data) {
   initTimer(data);
   initSkipButton();

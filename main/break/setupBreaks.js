@@ -8,12 +8,16 @@ function setupBreaks() {
   const breakEndData = {
     timeoutID: null,
     windows: [],
-    cancelPromise: null,
     timeLost: 0,
     timestamp: 0,
+    isFinished: false,
   };
 
   ipcMain.on("break-end", () => {
+    if (breakEndData.isFinished) {
+      return;
+    }
+    breakEndData.isFinished = true;
     handleBreakEnd();
     setupBreak();
   });
@@ -23,15 +27,28 @@ function setupBreaks() {
     lockScreen();
     handleBreakEnd();
   });
+  ipcMain.on("lock-screen", (_event) => {
+    breakEndData.windows[0].webContents.send("screen-locking");
+    ipcMain.on("screen-locking", (_event, timeLost) => {
+      breakEndData.timeLost = timeLost;
+      breakEndData.timestamp = Date.now();
+      handleBreakEnd();
+    });
+  });
   ipcMain.on("custom-unlock-screen", () => {
     store.data.screenLocked = false;
     store.data.windows.trap?.close();
-    handleBreakEnd();
     if (isTimeLost(breakEndData)) {
       launchBreak();
       return;
     }
-
+    setupBreak();
+  });
+  ipcMain.on("unlock-screen", () => {
+    if (isTimeLost(breakEndData)) {
+      launchBreak();
+      return;
+    }
     setupBreak();
   });
 
@@ -64,6 +81,7 @@ function setupBreaks() {
       ? { ...store.data.break, duration: breakEndData.timeLost }
       : store.data.break;
     breakEndData.timeLost = 0;
+    breakEndData.isFinished = false;
 
     const displays = screen.getAllDisplays();
     const externalDisplay = displays.find((display) => {

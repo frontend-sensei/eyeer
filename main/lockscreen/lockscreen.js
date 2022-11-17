@@ -23,7 +23,10 @@ function lockscreen(cb, customCommands) {
 }
 
 function lockScreen() {
-  lockscreen((err, stdout) => {
+  lockscreen((err) => {
+    if (!isLinux) {
+      return;
+    }
     store.data.screenLocked = true;
     if (err) {
       console.log("Unable to lock the screen:", err);
