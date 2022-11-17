@@ -9,7 +9,7 @@ contextBridge.exposeInMainWorld("api", {
   },
   receive: (channel, func) => {
     if (validChannels.includes(channel)) {
-      ipcRenderer.on(channel, (event, ...args) => func(...args));
+      ipcRenderer.on(channel, (_event, ...args) => func(...args));
     }
   },
   breakEnd: () => ipcRenderer.send("break-end"),
