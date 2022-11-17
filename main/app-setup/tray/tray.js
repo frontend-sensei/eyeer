@@ -3,6 +3,9 @@ const path = require("path");
 const createSettingsWindow = require("../../settings/createSettingsWindow");
 
 const setupTray = () => {
+  const windows = {
+    settings: null,
+  };
   app.whenReady().then(() => {
     const tray = new Tray(
       path.resolve(__dirname, "../../assets/braker-icon.png")
@@ -12,7 +15,10 @@ const setupTray = () => {
         label: "Settings",
         type: "normal",
         click: () => {
-          createSettingsWindow();
+          if (windows.settings) {
+            return;
+          }
+          windows.settings = createSettingsWindow();
         },
       },
       { type: "separator" },

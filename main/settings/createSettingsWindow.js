@@ -3,7 +3,7 @@ const path = require("path");
 const store = require("../store/store");
 
 function createSettingsWindow() {
-  const mainWindow = new BrowserWindow({
+  const window = new BrowserWindow({
     center: true,
     webPreferences: {
       contextIsolation: true,
@@ -11,10 +11,10 @@ function createSettingsWindow() {
       preload: path.join(__dirname, "preload.js"),
     },
   });
-  mainWindow.setMenuBarVisibility(false);
-  mainWindow.loadFile(path.join(__dirname, "index.html"));
-  mainWindow.webContents.on("did-finish-load", () => {
-    mainWindow.webContents.send("get-settings-data", store.data.break);
+  window.setMenuBarVisibility(false);
+  window.loadFile(path.join(__dirname, "index.html"));
+  window.webContents.on("did-finish-load", () => {
+    window.webContents.send("get-settings-data", store.data.break);
   });
 
   ipcMain.on("update-messages", (_event, messages) => {
@@ -22,7 +22,7 @@ function createSettingsWindow() {
     store.save();
   });
 
-  return mainWindow;
+  return window;
 }
 
 module.exports = createSettingsWindow;
