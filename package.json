@@ -38,7 +38,9 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "electron_quick_start"
+            "name": "Braker",
+            "authors": "Alice and Bob",
+            "description": "An example Electron app"
           }
         },
         {
