@@ -38,14 +38,18 @@ function setupBreaks() {
   ipcMain.on("custom-unlock-screen", () => {
     store.data.screenLocked = false;
     store.data.windows.traps.forEach((trapWindow) => trapWindow?.destroy());
-    if (isTimeLost(breakEndData)) {
+    const lostTime = getLostTime(breakEndData);
+    if (lostTime) {
+      breakEndData.timeLost = lostTime;
       launchBreak();
       return;
     }
     setupBreak();
   });
   ipcMain.on("unlock-screen", () => {
-    if (isTimeLost(breakEndData)) {
+    const lostTime = getLostTime(breakEndData);
+    if (lostTime) {
+      breakEndData.timeLost = lostTime;
       launchBreak();
       return;
     }
@@ -60,7 +64,9 @@ function setupBreaks() {
   function handleBreakEnd() {
     const { timeoutID, windows } = breakEndData;
     clearTimeout(timeoutID);
-    store.setNextMessage();
+    if (!getLostTime(breakEndData)) {
+      store.setNextMessage();
+    }
     // need to hide window to not exit from app.
     // after creation a new window, we can close previous
     windows[0]?.hide();
@@ -111,10 +117,10 @@ function setupBreaks() {
     });
   }
 
-  function isTimeLost(breakData) {
+  function getLostTime(breakData) {
     const lostTime = Date.now() - breakData.timestamp;
     const seconds = Math.floor(lostTime / 1000);
-    return seconds - breakData.timeLost;
+    return breakData.timeLost - seconds;
   }
 }
 
