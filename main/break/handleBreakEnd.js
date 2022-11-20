@@ -1,5 +1,5 @@
 const store = require("../store/store");
-const getLostTime = require("getLostTime");
+const getLostTime = require("./getLostTime");
 
 /**
  * Close opened window, reset started timeout, hide opened window.

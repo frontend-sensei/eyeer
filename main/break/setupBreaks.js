@@ -2,8 +2,8 @@ const store = require("../store/store");
 const { ipcMain, screen } = require("electron");
 const lockScreen = require("../lockscreen/lockscreen");
 const createBreakWindow = require("./createBreakWindow");
-const getLostTime = require("getLostTime");
-const handleBreakEnd = require("handleBreakEnd");
+const getLostTime = require("./getLostTime");
+const handleBreakEnd = require("./handleBreakEnd");
 
 function setupBreaks() {
   const breakInterval = store.data.break.interval * 1000;
