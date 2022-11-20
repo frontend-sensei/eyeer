@@ -1,13 +1,14 @@
 const store = require("../store/store");
 const getLostTime = require("./getLostTime");
+const breakEndData = require("./breakEndData");
 
 /**
  * Close opened window, reset started timeout, hide opened window.
  */
-function handleBreakEnd(data) {
-  const { timeoutID, windows } = data;
+function handleBreakEnd() {
+  const { timeoutID, windows } = breakEndData;
   clearTimeout(timeoutID);
-  if (!getLostTime(data)) {
+  if (getLostTime(breakEndData) <= 0) {
     store.setNextMessage();
   }
   // need to hide window to not exit from app.
