@@ -18,6 +18,7 @@ function setupBreaks() {
       return;
     }
     breakEndData.isFinished = true;
+    breakEndData.timeLost = 0;
     handleBreakEnd();
     setupBreak();
   });
@@ -27,26 +28,9 @@ function setupBreaks() {
     lockScreen();
     handleBreakEnd();
   });
-  ipcMain.on("lock-screen", (_event) => {
-    breakEndData.windows[0].webContents.send("screen-locking");
-    ipcMain.on("screen-locking", (_event, timeLost) => {
-      breakEndData.timeLost = timeLost;
-      breakEndData.timestamp = Date.now();
-      handleBreakEnd();
-    });
-  });
   ipcMain.on("custom-unlock-screen", () => {
     store.data.screenLocked = false;
     store.data.windows.traps.forEach((trapWindow) => trapWindow?.destroy());
-    const lostTime = getLostTime(breakEndData);
-    if (lostTime) {
-      breakEndData.timeLost = lostTime;
-      launchBreak();
-      return;
-    }
-    setupBreak();
-  });
-  ipcMain.on("unlock-screen", () => {
     const lostTime = getLostTime(breakEndData);
     if (lostTime) {
       breakEndData.timeLost = lostTime;
