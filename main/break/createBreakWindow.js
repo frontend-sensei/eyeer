@@ -1,23 +1,67 @@
 const { BrowserWindow } = require("electron");
 const path = require("path");
+const isLinux = require("../utils/isLinux");
+const isWindows = require("../utils/isWindows");
+const isMac = require("../utils/isMac");
 
-function createBreakWindow(windowOptions) {
-  const mainWindow = new BrowserWindow({
-    frame: true,
+function createBreakWindow(additionalOptions) {
+  const OSSpecificOptions = {
+    linux: {
+      windowOptions: {
+        frame: true,
+      },
+      setup(win) {
+        win.setVisibleOnAllWorkspaces(true);
+      },
+    },
+    windows: {
+      windowOptions: {
+        show: false,
+        frame: false,
+      },
+      setup(win) {
+        win.once("ready-to-show", () => {
+          win.setAlwaysOnTop(true, "screen-saver");
+          win.maximize();
+          win.show();
+        });
+      },
+    },
+    mac: {},
+  };
+  const getCurrentOSOptions = () => {
+    const OS = {
+      name: "",
+    };
+    if (isLinux) {
+      OS.name = "linux";
+    } else if (isWindows) {
+      OS.name = "windows";
+    } else if (isMac) {
+      OS.name = "mac";
+    }
+    return OSSpecificOptions[OS.name] || {};
+  };
+  const OSOptions = getCurrentOSOptions();
+
+  const window = new BrowserWindow({
     fullscreen: true,
-    transparent: true,
     alwaysOnTop: true,
     webPreferences: {
       contextIsolation: true,
       enableRemoteModule: false,
       preload: path.join(__dirname, "preload.js"),
     },
-    ...windowOptions,
+    ...OSOptions.windowOptions,
+    ...additionalOptions,
   });
-  mainWindow.setMenuBarVisibility(false);
-  mainWindow.loadFile(path.join(__dirname, "index.html"));
 
-  return mainWindow;
+  OSOptions?.setup(window);
+
+  window.setMenuBarVisibility(false);
+  window.loadFile(path.join(__dirname, "index.html"));
+
+  return window;
 }
 
 module.exports = createBreakWindow;

@@ -16,7 +16,7 @@ const setupTray = () => {
         type: "normal",
         click: () => {
           if (windows.settings) {
-            return;
+            windows.settings.destroy();
           }
           windows.settings = createSettingsWindow();
         },
