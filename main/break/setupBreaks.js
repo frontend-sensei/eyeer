@@ -2,6 +2,8 @@ const store = require("../store/store");
 const { ipcMain, screen } = require("electron");
 const lockScreen = require("../lockscreen/lockscreen");
 const createBreakWindow = require("./createBreakWindow");
+const getLostTime = require("getLostTime");
+const handleBreakEnd = require("handleBreakEnd");
 
 function setupBreaks() {
   const breakInterval = store.data.break.interval * 1000;
@@ -19,14 +21,14 @@ function setupBreaks() {
     }
     breakEndData.isFinished = true;
     breakEndData.timeLost = 0;
-    handleBreakEnd();
+    handleBreakEnd(breakEndData);
     setupBreak();
   });
   ipcMain.on("custom-lock-screen", (_event, timeLost) => {
     breakEndData.timeLost = timeLost;
     breakEndData.timestamp = Date.now();
     lockScreen();
-    handleBreakEnd();
+    handleBreakEnd(breakEndData);
   });
   ipcMain.on("custom-unlock-screen", () => {
     store.data.screenLocked = false;
@@ -41,21 +43,6 @@ function setupBreaks() {
   });
 
   setupBreak();
-
-  /**
-   * Close opened window, reset started timeout, hide opened window.
-   */
-  function handleBreakEnd() {
-    const { timeoutID, windows } = breakEndData;
-    clearTimeout(timeoutID);
-    if (!getLostTime(breakEndData)) {
-      store.setNextMessage();
-    }
-    // need to hide window to not exit from app.
-    // after creation a new window, we can close previous
-    windows[0]?.hide();
-    windows[1]?.hide();
-  }
 
   function setupBreak() {
     if (store.data.screenLocked) {
@@ -99,12 +86,6 @@ function setupBreaks() {
     breakEndData.windows[0].webContents.on("did-finish-load", () => {
       breakEndData.windows[0].webContents.send("get-break-data", newBreakData);
     });
-  }
-
-  function getLostTime(breakData) {
-    const lostTime = Date.now() - breakData.timestamp;
-    const seconds = Math.floor(lostTime / 1000);
-    return breakData.timeLost - seconds;
   }
 }
 
