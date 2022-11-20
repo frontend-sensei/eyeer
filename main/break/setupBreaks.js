@@ -37,7 +37,7 @@ function setupBreaks() {
   });
   ipcMain.on("custom-unlock-screen", () => {
     store.data.screenLocked = false;
-    store.data.windows.trap?.close();
+    store.data.windows.traps.forEach((trapWindow) => trapWindow?.destroy());
     if (isTimeLost(breakEndData)) {
       launchBreak();
       return;

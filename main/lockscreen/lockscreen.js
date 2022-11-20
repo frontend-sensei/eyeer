@@ -2,6 +2,7 @@ const { exec } = require("child_process");
 const createTrapWindow = require("./trapWindow/createTrapWindow");
 const isLinux = require("../utils/isLinux");
 const store = require("../store/store");
+const { screen } = require("electron");
 
 function lockscreen(cb, customCommands) {
   const lockCommands = customCommands || {
@@ -32,8 +33,21 @@ function lockScreen() {
       console.log("Unable to lock the screen:", err);
     }
     if (!err) {
-      setTimeout(() => {
-        createTrapWindow();
+      setTimeout(async () => {
+        const trapWindow = await createTrapWindow();
+        store.data.windows.traps.push(trapWindow);
+
+        const displays = screen.getAllDisplays();
+        const externalDisplay = displays.find((display) => {
+          return display.bounds.x !== 0 || display.bounds.y !== 0;
+        });
+        if (externalDisplay) {
+          const secondTrapWindow = await createTrapWindow({
+            x: externalDisplay.bounds.x,
+            y: externalDisplay.bounds.y,
+          });
+          store.data.windows.traps.push(secondTrapWindow);
+        }
       }, 1000);
     }
   });

@@ -78,7 +78,7 @@ module.exports = new Store({
       ]),
     },
     windows: {
-      trap: null,
+      traps: [],
     },
     screenLocked: false,
   },
