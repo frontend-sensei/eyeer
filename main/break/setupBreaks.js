@@ -5,6 +5,7 @@ const getLostTime = require("./getLostTime");
 const handleBreakEnd = require("./handleBreakEnd");
 const breakEndData = require("./breakEndData");
 const setupBreak = require("./setupBreak");
+const launchBreak = require("./launchBreak");
 
 function setupBreaks() {
   ipcMain.on("break-end", () => {
@@ -30,6 +31,7 @@ function setupBreaks() {
       launchBreak();
       return;
     }
+    breakEndData.timeLost = 0;
     setupBreak();
   });
 
