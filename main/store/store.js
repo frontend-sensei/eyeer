@@ -3,7 +3,6 @@ const path = require("path");
 const fs = require("fs");
 
 function parseDataFile(filePath, defaults) {
-  return defaults;
   try {
     return JSON.parse(fs.readFileSync(filePath));
   } catch (error) {
@@ -19,11 +18,17 @@ class Store {
     this.path = path.join(userDataPath, `${opts.configName}.json`);
     this.data = parseDataFile(this.path, opts.defaults);
     this.formatData();
+    this.checkDataForValidity();
   }
 
   setNextMessage() {
     const { size } = this.data.break.messages;
-    if (this.data.break.currentMessageId === size - 1) {
+    console.log(size);
+    console.log(this.data.break.currentMessageId);
+    if (
+      this.data.break.currentMessageId === size - 1 ||
+      this.data.break.currentMessageId > size
+    ) {
       this.data.break.currentMessageId = 0;
       return;
     }
@@ -64,6 +69,16 @@ class Store {
       set.add(object[property]);
     }
     return set;
+  }
+
+  checkDataForValidity() {
+    const { size } = this.data.break.messages;
+    if (
+      this.data.break.currentMessageId === size - 1 ||
+      this.data.break.currentMessageId > size
+    ) {
+      this.data.break.currentMessageId = 0;
+    }
   }
 }
 
