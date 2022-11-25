@@ -37,9 +37,15 @@ class Store {
   }
 
   save() {
-    this.data.break.messages = this.setToObject(this.data.break.messages);
-    fs.writeFileSync(this.path, JSON.stringify(this.data));
-    this.data.break.messages = this.objectToSet(this.data.break.messages);
+    try {
+      this.data.break.messages = this.setToObject(this.data.break.messages);
+      fs.writeFileSync(this.path, JSON.stringify(this.data));
+      this.data.break.messages = this.objectToSet(this.data.break.messages);
+    } catch (err) {
+      setTimeout(() => {
+        this.save();
+      }, 5000);
+    }
   }
 
   setToObject(set = new Set()) {
