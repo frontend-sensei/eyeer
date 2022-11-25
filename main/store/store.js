@@ -23,8 +23,6 @@ class Store {
 
   setNextMessage() {
     const { size } = this.data.break.messages;
-    console.log(size);
-    console.log(this.data.break.currentMessageId);
     if (
       this.data.break.currentMessageId === size - 1 ||
       this.data.break.currentMessageId > size
